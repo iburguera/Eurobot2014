@@ -1,0 +1,67 @@
+Nombre:		Ricardo Guerrero Gómez-Olmedo
+Edad: 		27
+Fecha de nacimiento: 08/01/1986
+E-mail:		soyelrichar@gmail.com
+DNI: 		47286970M
+Universidad:	UAH
+Estudios: 	Ingeniería de Telecomunicación
+Ocupación:	Investigador de la UAH, Visión artificial
+
+
+Nombre:		Adriana Huerta Rios
+Edad: 		25
+Fecha de nacimiento: 01-03-1989
+E-mail:		adriana.huertarios@gmail.com
+DNI: 		03140981D
+Universidad:	UAH
+Estudios: 	Grado en Ingeniería Telemática
+Ocupación:	Estudiante
+
+
+Nombre:		Dmytro Radchenko
+Edad: 		25
+Fecha de nacimiento: 24-10-1988
+E-mail:		dimitriy.rad@gmail.com
+DNI: 		X4716283H
+Universidad:	UAH
+Estudios: 	Ingeniero Superior en Telecomunicaciones.
+Ocupación:	Estudiante
+
+
+Nombre:		Pedro G—mez Moreno 	
+Edad: 		28
+Fecha de nacimiento: 30-05-1985 
+E-mail:		primo__pedro@hotmail.com
+DNI: 		09045296V
+Universidad:	UAH	
+Estudios: 	Inform‡tica Superior
+Ocupación:	Estudiante
+
+
+Nombre:		Iker Burguera Hidalgo
+Edad: 		27
+Fecha de nacimiento: 
+E-mail:		ikerburguera@gmail.com
+DNI:            72502634X
+Universidad:	Escuela Politecnica Superior de Mondragon Unibertsitatea 
+Estudios:       Ingeniero Superior en Telecomunicaciones. Especialidad Telemática
+Ocupación:	Ingeniero de Networking
+
+
+Nombre:		Francisco Javier López Márquez
+Edad: 		25
+Fecha de nacimiento: 28/10/1988
+E-mail:		javilm14@gmail.com
+DNI: 		53498151J
+Universidad:	UAH
+Estudios: 	Ingeniería Técnica de Telecomunicación, especialidad Telemática
+Ocupación: Haciendo el curso de adaptación al Grado.
+
+Nombre:		Fernando García Alonso	
+Edad: 		30
+Fecha de nacimiento: 05/10/1983
+E-mail:		fer.garcia.alonso@gmail.com
+DNI: 		51098906J
+Universidad:	UAH	
+Estudios: 	Ingeniero Técnico en Informática de Sistemas
+Ocupación:	Desarrollador Java
