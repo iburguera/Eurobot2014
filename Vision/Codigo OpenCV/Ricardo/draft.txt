@@ -1,0 +1,122 @@
+﻿
+
+private static final int FIRE = 0, ARROW = 1, BEACON = 2, UNDEFINED = 3;
+//UNDEFINED = puede ser un fuego que está muy cerca y solo vemos la mitad
+private static final bool OPENING=0, CLOSING=1;
+//opening: erode + dilate
+//closing: dilate + erode
+
+class Element
+{
+	//Atributes
+	public:
+	
+		int typeOfElement; //FIRE, ARROW ... This atribute stores the element intended to find. If we segment by red range, we are looking for fires
+		int shape; //FIRE, BEACON,UNDEFINED .... If there are many fires together, the segmentation could not be well performed making the shape being not a triangle, i.e UNDEFINED. This atribute reflects that.
+		cvRectangle bbox;
+		int cost; //from 0 to 100 depending on the area and location in the image. Float or double should be avoiding because of arduino embeded hardware nature
+		//Remember that an int in java or c is 4 bytes and in arduino is 2 bytes (0-256 unsigned)
+}
+
+class Range
+{
+	//Atributes
+	public:
+		Scalar[3] lowerBound;
+		Scalar[3] upperBound;
+}
+
+/*
+rngFireYellow
+rngFireRed1
+rngFireRed2
+rngBeacon1
+rngBeacon2
+...
+*/
+
+class Detector
+{
+	//Atributes
+	public:
+		
+	private:
+		List<Element> mElements;
+		Range rngFireYellow;
+		Range rngFireRed1:
+		Range rngFireRed2;
+		Range rngBeacon1;
+		Range rngBeacon2;
+		
+	//Methods
+	public:
+		Detector();
+		//List<Element> getPlayableElements(expectedShape, Range range1, Range range2=null);
+		List<Element> getPlayableElements(int tipeOfElement); //Fire
+		//List<Element> getBeacons(expectedShape, Range range1, Range range2);
+		List<Element> getBeacons();
+		
+	private:
+		void getElements(expectedShape, bool opening_close, Range range1, Range range2=null);
+};
+	
+Detector::Detector()
+{
+	mElements = new ArrayList<Element>;
+}
+
+List<element> Detector::getElements(expectedShape, bool opening_close, Range range1, Range range2=null)
+{
+	List<Element> mElements = new ArrayList<Element>;
+	List<cvcontours> mcontours = new ArrayList<cvcontours>;
+	
+	pyrdown //downscaling by 2
+	pyrdown
+	binary_map = inrange(range1.lowerBound, range1.upperBound)
+
+	if range2 != null
+	{
+		binary_map = cvor(binary_map, inrange(range2.lowerBound, range2.upperBound));
+	}
+	
+	if (opening_close == OPENING)
+	{
+		erode();
+		dilate();
+	}
+	else
+	{
+		dilate();
+		erode();
+	}
+	contours = findContours(binary_map);
+	
+	foreach contours
+		if contour > minArea
+		mcontours.add(contour);
+		
+	foreach mcontours
+		aproxPolyDP(mcontours) //Simplifying the contour
+		getVertex();
+		multiply(mcontours, 4); //Restoring to the initial size
+		//Core.multiply(contour, new Scalar(4,4), contour);
+		getArea()
+		getBB();
+		getCost();
+		mElements.add();
+		
+}
+
+public  List<element> Detector::getPlayableElements(expectedShape, Range range1, Range range2=null)
+{
+	getElements(expectedShape, OPENING, range1, range2=null);
+	computeStructuralInfo(mElements); //Computing central moments of each element  (Imgproc.Moments() ) and convexity. This will allow us to know more information about the shape
+	return mElements;
+}
+
+
+public  List<element> Detector::getBeacons(expectedShape, Range range1, Range range2);
+{
+	getElements(expectedShape, CLOSING, range1, range2);
+	return mElements;
+}

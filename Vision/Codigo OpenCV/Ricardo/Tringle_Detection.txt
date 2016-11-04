@@ -1,0 +1,83 @@
+-----------------------------------------
+ CODIGO DETECCION TRIANGULOS C++
+-----------------------------------------
+
+ 
+ cvThreshold(imgGrayScale,imgGrayScale,128,255,CV_THRESH_BINARY);  		//thresholding the grayscale image to get better results
+ 
+ CvSeq* contours;  								//hold the pointer to a contour in the memory block
+ CvSeq* result;   								//hold sequence of points of a contour
+ CvMemStorage *storage = cvCreateMemStorage(0); 				//storage area for all contours
+ 
+										//thresholding the grayscale image to get better results 
+
+ cvFindContours(imgGrayScale, storage, &contours, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0,0));
+
+while(contours)
+{
+    result = cvApproxPoly(contours, sizeof(CvContour), storage, CV_POLY_APPROX_DP, cvContourPerimeter(contours)*0.02, 0);   //obtain a sequence of points of contour, pointed by the variable 'contour'
+           
+
+    if(result->total==3 )							//if there are 3  vertices  in the contour(It should be a triangle)
+     {
+         CvPoint *pt[3];							//iterating through each point				
+
+         for(int i=0;i<3;i++)
+	{
+             pt[i] = (CvPoint*)cvGetSeqElem(result, i);
+         }
+   
+         cvLine(img, *pt[0], *pt[1], cvScalar(255,0,0),4);			//drawing lines around the triangle
+         cvLine(img, *pt[1], *pt[2], cvScalar(255,0,0),4);
+         cvLine(img, *pt[2], *pt[0], cvScalar(255,0,0),4);
+       
+     }
+
+     contours = contours->h_next; 						//obtain the next contour
+
+ }
+
+
+------------------------------------------
+ CODIGO DETECCION TRIANGULOS JAVA
+------------------------------------------
+
+(Revisar para implementarlo en código Java, 17/12/2013 20:27)       
+	
+
+       	Imgproc.cvtColor(mRgba, mHSVMat, Imgproc.COLOR_RGB2HSV, 3); 												// Convert the image into an HSV image
+            
+       	Core.inRange(mHSVMat, new Scalar(byteColourTrackCentreHue[0] - 12, 100, 100), new Scalar(byteColourTrackCentreHue[0] + 12, 255, 255), mHSVMat);
+
+        contours.clear();
+            
+       	Imgproc.findContours(mHSVMat, contours, mContours, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+            
+       	for (x = 0; x < contours.size(); x++) 
+	{
+       		d = Imgproc.contourArea (contours.get(x));
+
+       		if (d > iContourAreaMin) 															// get an approximation of the contour (last but one param is the min required
+		{																		// distance between the real points and the new approximation (in pixels)
+                	contours.get(x).convertTo(mMOP2f1, CvType.CV_32FC2);			
+            				
+            	  	Imgproc.approxPolyDP(mMOP2f1, mMOP2f2, 15, true);
+                    	
+            		mMOP2f2.convertTo(contours.get(x), CvType.CV_32S);											// convert back to MatOfPoint and put it back in the list
+            		
+                    	if (contours.get(x).rows() == 3) 
+		    	{
+                        	Converters.Mat_to_vector_Point2f(contours.get(x), pts);  
+            			
+            			Imgproc.drawContours(mRgba, contours, x, cvScalar(255,0,0), 4);   //(4 es el LineThickness)
+
+                       		Core.line(mRgba, pts.get(0), pts.get(1), cvScalar(255,0,0), 4);  // Dibujamos el triangulo
+				Core.line(mRgba, pts.get(1), pts.get(2), cvScalar(255,0,0), 4);
+                        	Core.line(mRgba, pts.get(2), pts.get(0), cvScalar(255,0,0), 4);
+
+				
+                	}
+                 }
+         }
+
+          
